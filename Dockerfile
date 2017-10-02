@@ -1,4 +1,4 @@
-FROM	python:2.7
+FROM	python:3.6
 
 # grab gosu for easy step-down from root
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
@@ -13,7 +13,7 @@ RUN arch="$(dpkg --print-architecture)" \
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r curator && useradd -r -g curator curator
 
-RUN pip install elasticsearch-curator==3.4.0
+RUN pip install elasticsearch-curator==5.2.0
 
 COPY docker-entrypoint.sh /
 
@@ -23,4 +23,4 @@ ENV ELASTICSEARCH_HOST=elasticsearch
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["curator"] 
+CMD ["curator"]
