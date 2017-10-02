@@ -16,6 +16,8 @@ RUN groupadd -r curator && useradd -r -g curator curator
 RUN pip install elasticsearch-curator==5.2.0
 
 COPY docker-entrypoint.sh /
+COPY config/curator.yml /curator/
+COPY config/delete_indice.yml /curator/
 
 ENV INTERVAL_IN_HOURS=24
 ENV OLDER_THAN_IN_DAYS="20"
